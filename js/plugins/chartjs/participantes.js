@@ -4,13 +4,13 @@ var PieDoughnutChartSampleData = [
         value: 100,
         color:"#F7464A",
         highlight: "#FF5A5E",
-        label: "Red"
+        label: "Fizeram check-in"
     },
     {
         value: 50,
         color: "#46BFBD",
         highlight: "#5AD3D1",
-        label: "Green"
+        label: "Não fizeram check-in"
     },
 ]
 
