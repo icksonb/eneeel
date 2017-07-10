@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!--================================================================================
+	Item Name: Materialize - Material Design Admin Template
+	Version: 1.0
+	Author: GeeksLabs
+	Author URL: http://www.themeforest.net/user/geekslabs
+================================================================================ -->
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="description" content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google. ">
+  <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template,">
+  <title>XII ENEEEL</title>
+
+  <!-- Favicons-->
+  <link rel="icon" href="images/favicon/favicon-32x32.png" sizes="32x32">
+  <!-- Favicons-->
+  <link rel="apple-touch-icon-precomposed" href="images/favicon/apple-touch-icon-152x152.png">
+  <!-- For iPhone -->
+  <meta name="msapplication-TileColor" content="#00bcd4">
+  <meta name="msapplication-TileImage" content="images/favicon/mstile-144x144.png">
+  <!-- For Windows Phone -->
+
+
+  <!-- CORE CSS-->
+  
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
+
+
+  <!-- INCLUDED PLUGIN CSS ON THIS PAGE -->
+  <link href="css/prism.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="js/plugins/perfect-scrollbar/perfect-scrollbar.css" type="text/css" rel="stylesheet" media="screen,projection">
+  <link href="js/plugins/chartist-js/chartist.min.css" type="text/css" rel="stylesheet" media="screen,projection">
+
+
+</head>
+
+<body>
+  <!-- Start Page Loading -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>        
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
+    <!-- End Page Loading -->
+
+  <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+  <!-- START HEADER -->
+  <header id="header" class="page-topbar">
+        <!-- start header nav-->
+        <div class="navbar-fixed">
+            <nav class="cyan">
+                <div class="nav-wrapper">
+                            <h1 class="logo-wrapper"><a href="index.html" class="brand-logo darken-1"><img src="images/logo1.png" alt="materialize logo"></a> 
+                            </h1>
+                    <ul>
+                        <!--APENAS PARA A PÁGINA INICIAL
+                        <li class="right">    
+                            <i class="mdi-action-highlight-remove"></i></a>                         
+                        </li>
+                        -->
+                        <!--PARA AS DEMAIS PÁGINAS-->
+                        <li>    
+                            <a href="inicial.html"><i class="mdi-navigation-chevron-left"></i></a>                         
+                        </li>
+                        <li class="right">    
+                            <a href="inicial.html"><i class="mdi-action-home"></i></a>                         
+                        </li>
+                        
+                        
+
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- end header nav-->
+  </header>
+  <!-- END HEADER -->
+
+  <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+  <!-- START MAIN -->
+  <div id="main">
+    <!-- START WRAPPER -->
+    <div class="wrapper">
+
+      
+      <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+      <!-- START CONTENT -->
+      <section id="content">
+
+        
+
+
+        <!--start container-->
+        <div class="container">
+            <div class="section">
+
+
+            <div class="divider"></div>
+            <!--chart dashboard start-->
+            <div id="chart-dashboard" class="seaction">
+              <h4 class="header">Customize Charts Widget</h4>
+              <p>Show your business trending chart using this widgets.</p>
+              <div class="row">
+                <div class="col s12 m8 l8">
+                    <div class="card">
+                        <div class="card-move-up waves-effect waves-block waves-light">
+                            <div class="move-up cyan darken-1">
+                                <div>
+                                    <span class="chart-title white-text">Revenue</span>
+                                    <div class="chart-revenue cyan darken-2 white-text">
+                                        <p class="chart-revenue-total">$4,500.85</p>
+                                        <p class="chart-revenue-per"><i class="mdi-navigation-arrow-drop-up"></i> 21.80 %</p>
+                                    </div>
+                                    <div class="switch chart-revenue-switch right">
+                                        <label class="cyan-text text-lighten-5">
+                                          Month
+                                          <input type="checkbox">
+                                          <span class="lever"></span> Year
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="trending-line-chart-wrapper">
+                                    <canvas id="trending-line-chart" height="70"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="col s12 m3 l3">
+                                <div id="doughnut-chart-wrapper">
+                                    <canvas id="doughnut-chart" height="200"></canvas>
+                                    <div class="doughnut-chart-status">4500
+                                        <p class="ultra-small center-align">Sold</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col s12 m2 l2">
+                                <ul class="doughnut-chart-legend">
+                                    <li class="mobile ultra-small"><span class="legend-color"></span>Mobile</li>
+                                    <li class="kitchen ultra-small"><span class="legend-color"></span> Kitchen</li>
+                                    <li class="home ultra-small"><span class="legend-color"></span> Home</li>
+                                </ul>
+                            </div>
+                            <div class="col s12 m5 l6">
+                                <div class="trending-bar-chart-wrapper">
+                                    <canvas id="trending-bar-chart" height="90"></canvas>                                                
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+                </div>
+
+            <center><h4 class="header">BUSCAR PARTICIPANTE</h4></center>
+              
+           <div class="input-field col s12">
+          <!--i class="material-icons prefix">textsms</i-->
+          <input type="text" id="autocomplete-input" class="autocomplete">
+          <label for="autocomplete-input">Nome completo</label>
+          <center><a class="teal btn"><i class="mdi-action-search"></i>  Buscar</a></center>
+        </div>
+
+
+         
+            </div>
+            <!--card stats end-->
+        </div>
+           
+
+
+
+      </section>
+    </div>
+    <!-- END WRAPPER -->
+    
+  </div>
+  <!-- END MAIN -->
+
+
+
+  <!-- //////////////////////////////////////////////////////////////////////////// -->
+
+  
+
+
+    <!-- ================================================
+    Scripts
+    ================================================ -->
+    
+    <!-- jQuery Library -->
+    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>    
+    <!--materialize js-->
+    <script type="text/javascript" src="js/materialize.js"></script>
+    <!--prism-->
+    <script type="text/javascript" src="js/prism.js"></script>
+    <!--scrollbar-->
+    <script type="text/javascript" src="js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    
+    <!-- chartjs -->
+    <script type="text/javascript" src="js/plugins/chartjs/chart.min.js"></script>
+    <script type="text/javascript" src="js/plugins/chartjs/chart-script.js"></script>
+
+    <!-- sparkline -->
+    <script type="text/javascript" src="js/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <script type="text/javascript" src="js/plugins/sparkline/sparkline-script.js"></script>
+
+    <!-- chartist -->
+    <script type="text/javascript" src="js/plugins/chartist-js/chartist.min.js"></script>   
+    
+    <!--plugins.js - Some Specific JS codes for Plugin Settings-->
+    <script type="text/javascript" src="js/plugins.js"></script>
+
+    
+
+    
+</body>
+
+</html>
