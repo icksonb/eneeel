@@ -110,9 +110,12 @@
                     <div class="card-content">
                       
                           <span class="card-title activator grey-text text-darken-4" id="nome"> ---</span>
-                          <p id="pacote"><i class="mdi-action-perm-identity"></i> ---</p>
-                          <p id="quarto"><i class="mdi-action-perm-phone-msg"></i> ---</p>
                           <p id="email"><i class="mdi-communication-email"></i> ---</p>
+                          <p id="cpf"><i class="mdi-action-aspect-ratio"></i> ---</p>
+                          <p id="pacote"><i class="mdi-maps-local-atm"></i> ---</p>
+                          <p id="quarto"><i class="mdi-maps-local-hotel"></i> ---</p>
+                          <p id="camisa"><i class="mdi-action-wallet-travel"></i> ---</p>
+                          <p id="sandalia"><i class="mdi-action-wallet-travel"></i> ---</p>
                           <p>NÃO EFETUOU CHECK-IN</p>
                             <a class="btn-floating activator btn-move-up waves-effect waves-light teal right">
                               <i class="mdi-action-done"></i>
@@ -168,14 +171,45 @@
 
     <!--plugins.js - Some Specific JS codes for Plugin Settings-->
     <script type="text/javascript" src="js/plugins.js"></script>
-<!--Função para enviar os dados-->
+    <script type="text/javascript" src="csv/email.js"></script>
+    <script type="text/javascript" src="csv/nome.js"></script>
+	<!--Função para enviar os dados-->
     <script type="text/javascript">
               var hash;
               var hashes;
               hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&') + '';
               email = hashes.split('=');
-              string = "<p id='email'><i class='mdi-communication-email'></i> " + email[1] + "</p>";
+              email = email[1];
+              var busca = arrEmail.indexOf(email);
+              var resultado = arrNome[busca];
+              arrR = resultado.split(',');
+
+              string = "<span class='card-title activator grey-text text-darken-4' id='nome'>" + arrR[0] + "</span></p>";
+              $('#nome').replaceWith(string);
+
+              string = "<p id='email'><i class='mdi-communication-email'></i> " + email + "</p>";
               $('#email').replaceWith(string);
+              
+              string = "<p id='pacote'><i class='mdi-maps-local-atm'></i> " + arrR[1] + "</p>";
+              $('#pacote').replaceWith(string);
+
+              string = "<p id='quarto'><i class='mdi-maps-local-hotel'></i> " + arrR[2] + "</p>";
+              $('#quarto').replaceWith(string);
+
+              string = "<p id='cpf'><i class='mdi-action-aspect-ratio'></i> CPF:" + arrR[3] + "</p>";
+              $('#cpf').replaceWith(string);
+
+              string = "<p id='camisa'><i class='mdi-action-wallet-travel'></i> Camisa: " + arrR[4] + "</p>";
+              $('#camisa').replaceWith(string);
+
+			  string = "<p id='camisa'><i class='mdi-action-wallet-travel'></i> Sandália: " + arrR[5] + "</p>";
+              $('#sandalia').replaceWith(string);                        
+                          
+
+
+
+              
+              
     </script>
 </body>
 
