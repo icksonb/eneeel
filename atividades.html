@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <!--================================================================================
   Item Name: Materialize - Material Design Admin Template
@@ -9,7 +9,7 @@
 ================================================================================ -->
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="msapplication-tap-highlight" content="no">
@@ -67,9 +67,7 @@
                         </li>
                         -->
                         <!--PARA AS DEMAIS PÁGINAS-->
-                        <li>    
-                            <a href="inicial.html"><i class="mdi-navigation-chevron-left"></i></a>                         
-                        </li>
+                        
                         <li class="right">    
                             <a href="inicial.html"><i class="mdi-action-home"></i></a>                         
                         </li>
@@ -105,9 +103,22 @@
             
             <!--card stats start-->
             <div id="card-stats" class="seaction">
-              <center><h4 class="header">SELECIONE UM QUARTO</h4></center>
+              <center><h4 id="titulo" class="header">---</h4></center>
              
                
+              		<div class="divider"></div>
+			        <div id="striped-table">
+			          
+			          <div class="row">
+			           
+			            <div class="col s12 m8 l9">
+			              
+			                <div id="tabela"></div>
+			              
+			            </div>
+			          </div>
+			        </div>
+
 
             </div>
             <!--card stats end-->
@@ -148,13 +159,13 @@
     <script type="text/javascript" src="js/plugins/sparkline/jquery.sparkline.min.js"></script>
     <script type="text/javascript" src="js/plugins/sparkline/sparkline-script.js"></script>
 
-    <!-- chartist -->
-    <script type="text/javascript" src="js/plugins/chartist-js/chartist.min.js"></script>   
+    <!-- chartist 
+    <script type="text/javascript" src="js/plugins/chartist-js/chartist.min.js"></script>   -->
     
     <!--plugins.js - Some Specific JS codes for Plugin Settings-->
     <script type="text/javascript" src="js/plugins.js"></script>
 
-    <script type="text/javascript">
+    <script type="text/javascript" charset="utf-8">
       //string = "<div class='row'>";
       //string += "<div class='col s12'>";
       //string += "<div class='card'>";
@@ -166,24 +177,54 @@
       //string += "</div></div></div></div>";                                 
       var hashes;
           hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&') + '';
-          id = hashes.split('=');
-          id = id[1];
-          if(id == "")
-          {
-            string = "inicial.html";
-            location.href = string;
-          }
+          link = hashes.split('=') + '';
+          link = link.split(',');
+          id = link[1];
+          
+         
           $.ajax({
-              url: "http://www.eneeel.com/aplicativo/atividadesLista.php?id=" + id, 
+              url: "http://www.eneeel.com/aplicativo/listaParticipantes.php?id=" + id, 
               type: "POST",
               crossDomain: true,
               success: function(data) 
               {
                 
-                teste = data.split(',');
+                  resultado = data.split(',');
+
+                  string = "<h4 id='titulo' class='header'>" + resultado[0] + "</h4>";
+          		  $('#titulo').replaceWith(string);
+		          
+		          var table = "<table id='tabela' class='striped'>";
+		              table += '<thead>';
+		              table += '<tr>';
+		              table += '<th>Nome</th>';
+		              table += '<th>CPF</th>';
+		              table += '<th></th>';
+		              table += '</tr>';
+
+		              
+
+		              for (i=1; i<resultado.length-2; i++)
+		              {
+		              		table += '<tr>';
+		              		i = i+1;
+							table += '<td>' + resultado[i] + '</td>';
+							i = i+1
+							table += '<td>' + resultado[i] + '</td>';
+							table += "<td><div class='switch'><label><input type='checkbox'><span class='lever'></span></label></div></td>";
+							table += '</tr>';
+		              }
+
+		              
+		              table += '</thead>';
+		              table += '</table>';
+		           
+		        $('#tabela').replaceWith(table);
+
+		        $('#tabela').tablesorter();
                 
               }
-            });
+          });
     </script>    
 
     
