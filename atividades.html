@@ -100,6 +100,10 @@
         <div class="container">
           <div class="section">
 
+ <div id="carregando" class="progress">
+      <div class="indeterminate"></div>
+  </div>
+
             
             <!--card stats start-->
             <div id="card-stats" class="seaction">
@@ -113,8 +117,17 @@
 			           
 			            <div class="col s12 m8 l9">
 			              
-			                <div id="tabela"></div>
-			              
+                      <!--i class="material-icons prefix">textsms</i-->
+                      <form id="freq" onsubmit="mysubmit();return false" method="GET">
+                        <div id="tabela"></div>
+                    
+                       <div class="input-field col s12">
+                      <center><button type="submit" name="enviar" id="enviar" class="teal btn"><i class="mdi-action-send"></i>  Enviar</button></center>
+ 			               
+			              </form>
+                     <div id="carregando2"></div>
+                      
+                    
 			            </div>
 			          </div>
 			        </div>
@@ -153,7 +166,7 @@
     
     <!-- chartjs -->
     <script type="text/javascript" src="js/plugins/chartjs/chart.min.js"></script>
-    <script type="text/javascript" src="js/plugins/chartjs/chart-script.js"></script>
+    <!--script type="text/javascript" src="js/plugins/chartjs/chart-script.js"></script-->
 
     <!-- sparkline -->
     <script type="text/javascript" src="js/plugins/sparkline/jquery.sparkline.min.js"></script>
@@ -164,6 +177,57 @@
     
     <!--plugins.js - Some Specific JS codes for Plugin Settings-->
     <script type="text/javascript" src="js/plugins.js"></script>
+
+    
+      
+    <script type="text/javascript">
+      
+      function mysubmit() 
+      {
+          
+          ativar = "<div id='carregando2' class='progress'>";
+          ativar += "<div class='indeterminate'></div>";
+          ativar += "</div>";
+          $('#carregando2').replaceWith(ativar);
+
+          hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&') + '';
+          link = hashes.split('=') + '';
+          link = link.split(',');
+          id = link[1];
+          
+         enviarStr = '';
+        aChk = document.getElementsByName("frequencia");
+          
+          for (p=0; p<aChk.length; p++)
+          {
+              console.log("FOR");
+               enviarStr += aChk[p].value + ',';
+               if (aChk[p].checked == true)
+               {
+                  enviarStr += '1,';
+               }
+               else
+               {
+                  enviarStr += '0,';
+               }
+          }
+          
+          $.ajax({
+              url: "http://www.eneeel.com/aplicativo/frequencia.php?id=" + id + "&info=" + enviarStr, 
+              type: "GET",
+              crossDomain: true,
+              success: function(data) 
+              {
+                  if(data == "1")
+                  {
+                    string = "atividades.html?id=" + id;
+                    location.href = string;
+                  }
+              }
+          });
+      }  
+
+    </script>
 
     <script type="text/javascript" charset="utf-8">
       //string = "<div class='row'>";
@@ -208,20 +272,30 @@
 		              {
 		              		table += '<tr>';
 		              		i = i+1;
-							table += '<td>' + resultado[i] + '</td>';
-							i = i+1
-							table += '<td>' + resultado[i] + '</td>';
-							table += "<td><div class='switch'><label><input type='checkbox'><span class='lever'></span></label></div></td>";
-							table += '</tr>';
+        							table += '<td>' + resultado[i] + '</td>';
+        							i = i+1
+        							table += '<td>' + resultado[i] + '</td>';
+                      i = i+1;
+                      if(resultado[i] == "1")
+                      {
+                        table += "<td><div class='switch'><label><input type='checkbox'  name='frequencia' id='frequencia' value='" + resultado[i-3]  +"'checked><span class='lever'></input></span></label></div></td>";
+                      } 
+                      else
+                      {
+                        table += "<td><div class='switch'><label><input type='checkbox'  name='frequencia' id='frequencia'  value='" + resultado[i-3]  +"'><span class='lever'></span></input></label></div></td>";
+                      }
+        							
+        							table += '</tr>';
+                      
 		              }
 
 		              
 		              table += '</thead>';
 		              table += '</table>';
 		           
-		        $('#tabela').replaceWith(table);
+    		        $('#tabela').replaceWith(table);
 
-		        $('#tabela').tablesorter();
+                $('#carregando').remove();
                 
               }
           });
