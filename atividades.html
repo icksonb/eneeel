@@ -184,7 +184,7 @@
       
       function mysubmit() 
       {
-          
+          var token = JSON.parse(sessionStorage.getItem('token'));
           ativar = "<div id='carregando2' class='progress'>";
           ativar += "<div class='indeterminate'></div>";
           ativar += "</div>";
@@ -213,7 +213,7 @@
           }
           
           $.ajax({
-              url: "http://www.eneeel.com/aplicativo/frequencia.php?id=" + id + "&info=" + enviarStr, 
+              url: "http://www.eneeel.com/aplicativo/frequencia.php?id=" + id + "&info=" + enviarStr + "&token=" + token, 
               type: "GET",
               crossDomain: true,
               success: function(data) 
@@ -239,7 +239,8 @@
       //string += "<i class='right mdi-navigation-arrow-forward small'></i>";
       //string += "</a>";    
       //string += "</div></div></div></div>";                                 
-      var hashes;
+          var token = JSON.parse(sessionStorage.getItem('token'));
+          var hashes;
           hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&') + '';
           link = hashes.split('=') + '';
           link = link.split(',');
