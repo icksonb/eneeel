@@ -52,37 +52,34 @@
 <div class="container">
   <div id="login-page" class="row">
     <div class="col s12 z-depth-4 card-panel">
-      <form class="login-form">
+      <form class="login-form" onsubmit="mysubmit();return false" method="POST">
         <div class="row">
           <div class="input-field col s12 center">
             <img src="images/logo.png" alt="" class="responsive-img valign profile-image-login">
             <p class="center login-form-text">xii eneeel - administração - login</p>
           </div>
         </div>
-        <div class="row margin">
-          <div class="input-field col s11">
-            <i class="mdi-social-person-outline prefix"></i>
-            <input id="username" type="email" class="validate" required>
-            <label for="username" class="center-align">Email</label>
-          </div>
-        </div>
+        
         <div class="row margin">
           <div class="input-field col s11">
             <i class="mdi-action-lock-outline prefix"></i>
-            <input id="password" type="password">
-            <label for="password">Senha</label>
+            <input id="senha" type="password">
+            <label for="senha">Código</label>
 
           </div>
         </div>
-        <a href="inicial.html">Entrar</a>
         <div class="row">
           <div class="input-field col s10 offset-s1">
-            <a href="inicial.html"><button class="btn waves-effect waves-light col s12">Entrar</button></a>
+            <button class="btn waves-effect waves-light col s12">Entrar</button>
           </div>
         </div>
         
 
       </form>
+      <div id="erro"><center><font color="red">Código inválido</font></div></center>
+      	<div id="carregando" class="progress">
+      		<div class="indeterminate"></div>
+  		</div>
     </div>
   </div>
 </div>
@@ -103,6 +100,59 @@
 
   <!--plugins.js - Some Specific JS codes for Plugin Settings-->
   <script type="text/javascript" src="js/plugins.js"></script>
+
+  <script type="text/javascript">
+  	  $('#erro').hide();
+  	  $('#carregando').hide();
+
+	  $.ajax({
+	      url: "http://www.eneeel.com/aplicativo/login.php?verifica=1", 
+	      type: "GET",
+	      crossDomain: true,
+	      success: function(data)
+	      {
+	      	  console.log(data);
+	          if(data == "1")
+	          {
+	            string = "inicial.html";
+	            location.href = string;
+	          }
+	      }
+	  });	
+
+  </script>
+
+  <script type="text/javascript">
+  	function mysubmit() 
+    {
+    	$('#carregando').show();
+    	var dados = 'id=' + $("#senha").val();
+    	console.log(dados);
+    	$.ajax({
+	      url: "http://www.eneeel.com/aplicativo/login.php", 
+	      type: "POST",
+	      data: dados,
+	      crossDomain: true,
+	      success: function(data) 
+	      {
+	      	  $('#carregando').hide();
+            dados = data.split(',');
+	          if(dados[0] == "1")
+	          {
+	          	$('#carregando').hide();
+	            string = "inicial.html";
+              var token = JSON.stringify(dados[1]);
+              sessionStorage.setItem('token', token);
+	            location.href = string;
+	          }
+	          else
+	          {
+	          	$('#erro').show();
+	          }
+	      }
+	  	});	
+    }
+  </script>
 
 </body>
 
