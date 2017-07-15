@@ -67,7 +67,9 @@
                         </li>
                         -->
                         <!--PARA AS DEMAIS PÁGINAS-->
-                        
+                        <li>    
+                            <a onclick="adicionar();" href="#"><i class="mdi-content-add-circle-outline"></i></a>                         
+                        </li>
                         <li class="right">    
                             <a href="inicial.html"><i class="mdi-action-home"></i></a>                         
                         </li>
@@ -178,7 +180,17 @@
     <!--plugins.js - Some Specific JS codes for Plugin Settings-->
     <script type="text/javascript" src="js/plugins.js"></script>
 
-    
+    <script type="text/javascript">
+      function adicionar()
+      {
+          hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&') + '';
+          link = hashes.split('=') + '';
+          link = link.split(',');
+          id = link[1];
+          string = "adicionar.html?atividade=" + id;
+          location.href = string;
+      }
+    </script>
       
     <script type="text/javascript">
       
