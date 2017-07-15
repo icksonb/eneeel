@@ -175,7 +175,9 @@
     <script type="text/javascript" src="csv/nome.js"></script>
 
 	<script type="text/javascript">
-    	
+    	 
+          var token = JSON.parse(sessionStorage.getItem('token'));
+
           var hashes;
           hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&') + '';
           email = hashes.split('=');
@@ -186,7 +188,7 @@
           	location.href = string;
           }
           $.ajax({
-			url: "http://www.eneeel.com/aplicativo/checkin.php?email=" + email + "&id=1", 
+			url: "http://www.eneeel.com/aplicativo/checkin.php?email=" + email + "&id=1&token=" + token, 
 			type: "POST",
 			//headers: {'X-Requested-With': 'XMLHttpRequest'},
 			crossDomain: true,
@@ -206,20 +208,22 @@
 
     <script type="text/javascript">
     	$("#checkin").click(function(){
+          var token = JSON.parse(sessionStorage.getItem('token'));
           var hashes;
           hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&') + '';
           email = hashes.split('=');
           email = email[1];
 
           $.ajax({
-			url: "http://www.eneeel.com/aplicativo/checkin.php?email=" + email, 
-			type: "POST",
+			url: "http://www.eneeel.com/aplicativo/checkin.php?email=" + email + "&token=" + token, 
+			type: "GET",
 			//headers: {'X-Requested-With': 'XMLHttpRequest'},
 			crossDomain: true,
         	//dataType: 'jsonp',
 			success: function(data) 
 			{
-				location.reload();
+          location.reload();  
+        
 			}
 		});
       });
